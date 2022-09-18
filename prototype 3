@@ -1,0 +1,213 @@
+# Yash Vincent Singh
+# Third Prototype
+#importing the tkinter module
+import tkinter
+from tkinter import *
+from tkinter import messagebox
+from turtle import st
+# Window of where all the gui will be presented
+# Below are the specifications for the window
+main = Tk()
+main.title("PHS House Event Calculator")
+main.geometry("400x320")
+main.config(background="#E5E4E2")
+
+# List that holds information about house events
+Total_event = []
+
+# List for the pre-made event and future drop down menu basically events
+Event_name = ["Lampada Games","House Trivia"]
+
+# Frames for the main frames, box and leaderboard
+main_frame = LabelFrame(main,background="#E5E4E2")
+main_frame.grid(row=0,column=0)
+box = LabelFrame(main,background="#E5E4E2",width="1653")
+box.grid(row=1,column=0)
+leaderboard = LabelFrame(main,background="#E5E4E2")
+leaderboard.grid(row=0,column=1)
+
+# Creating a radiobutton for the user to choose if their event is considered a sport or not
+# StingVar is used to locate the button
+sport = tkinter.StringVar()
+sport.set("Yes")
+Radiobutton(main_frame, text= "True",variable=sport,value="Yes",background="#E5E4E2").place(x=120, y=95)
+Radiobutton(main_frame, text="False", variable=sport,value="No",background="#E5E4E2").place(x=180,y=95)
+
+# Creating entry boxes to get data from the user
+name_data = tkinter.Entry(main_frame)
+Green = Entry(main_frame)
+Yellow = Entry(main_frame)
+Blue = Entry(main_frame)
+Red = Entry(main_frame)
+Name_user = tkinter.Entry(main_frame)
+
+# Adjusting the widgets for entry boxes
+name_data.grid(column=1,row=1)
+Green.grid(column=1,row=2)
+Yellow.grid(column=1,row=3)
+Blue.grid(column=1,row=4)
+Red.grid(column=1,row=5)
+Name_user.grid(column=1,row=7)
+
+# Creating Labels for the entry boxes
+tkinter.Label(main_frame, text= " House Event ",background="#E5E4E2").place(x=22,y=0)
+tkinter.Label(main_frame, text= " Rimu : ",fg= "green",background="#E5E4E2").place(x=22,y=18)
+tkinter.Label(main_frame,text="Kowhai : ",fg="yellow",background="#E5E4E2").place(x=25,y=37)
+tkinter.Label(main_frame, text="Kauri :",fg="blue",background="#E5E4E2").place(x=25,y=58)
+tkinter.Label(main_frame, text= "Pohutukawa : ",fg="red",background="#E5E4E2").place(x=25,y=75)
+tkinter.Label(main_frame, text= "Is the event a sport : ",background="#E5E4E2").grid(column=0,row=6)
+tkinter.Label(main_frame, text= " Whats your name : ",background="#E5E4E2").grid(column=0,row=7)
+
+
+# The class basically creates a object called Details in this object it will print the data for when the user enters the name of the event, sport,points for the all 4 different colours
+class Details:
+    #this is where all the data entered by the user is kept
+    def __init__(self,name,sport,green,yellow,blue,red,winner):
+        self.name = name
+        self.sport = sport
+        self.green = green
+        self.yellow = yellow
+        self.blue = blue
+        self.red = red
+        self.winner = winner
+
+    # This will display the input received by the user
+    def get_info(self):
+        return (["Name - "+ self.name, "Is "+ str(self.name) + " a sport - "+ self.sport, "Rimu Points - " + str(self.green), "Kowhai Points - " + str(self.yellow) ,
+                 "Kauri Points - "+ str(self.blue), "Pohutukawa Points - " + str(self.red), " Winner - " + self.winner])
+
+# Pre-made events that will be presented in the dropdown menu
+Total_event.append(Details("Lampada Games" , "Yes", 68,72,60,75,"Pohutukawa"))
+Total_event.append(Details("House Trivia" , "No", 73,74,68,66,"Kowhai"))
+
+# Option menu creation that will have all the pre-made events and the new events
+# StringVar is basically holds data mainly string and this is where it will mostly hold the events details given by the user
+event_choice = tkinter.StringVar()
+event_choice.set("Events")
+event_dropdown = tkinter.OptionMenu(box,event_choice, *Event_name)
+
+#customising the option menu
+event_dropdown.config(background="#E5E4E2")
+event_dropdown.grid(row=0,column=0)
+
+# creating labels for the leaderboard
+def display():
+    Label(leaderboard, text="Leaderboard",background="#E5E4E2").grid(column=0,row=0)
+    Label(leaderboard, text=" Rimu",fg="green",background="#E5E4E2").grid(column=0,row=1,sticky=W)
+    Label(leaderboard, text= " Kowhai ",fg="yellow", background="#E5E4E2").grid(column=0,row=2,sticky=W)
+    Label(leaderboard, text= " Kauri", fg="blue",background="#E5E4E2").grid(column=0,row=3,sticky=W)
+    Label(leaderboard, text= " Pohutukawa",fg="red",background="#E5E4E2").grid(column=0,row=4,sticky=W)
+
+# This function works in a loop which takes all the points and adds it and displays on the leaderboard which can be seen by a press of a buttona and it will be displayed on the righ side and
+# its endless so the user is not limited to certain amounts of events
+def leaderboard_V2(new_green, new_yellow,new_blue,new_red):
+    #this is for loop
+    for data in Total_event:
+        new_green = new_green + data.green
+        new_yellow = new_yellow + data.yellow
+        new_blue = new_blue + data.blue
+        new_red = new_red + data.red
+    Label(leaderboard, text=new_green,background="#E5E4E2").grid(column=1, row=1)
+    Label(leaderboard, text=new_yellow,background="#E5E4E2").grid(column=1,row=2)
+    Label(leaderboard, text=new_blue,background="#E5E4E2").grid(column=1,row=3)
+    Label(leaderboard, text=new_red,background="#E5E4E2").grid(column=1,row=4)
+
+# Adding a family friendly message to thank the user
+def positivty_message():
+    Name = Name_user.get()
+    messagebox.showinfo("Thank you", "Kia ora " + str(Name) + "\n" "Thanks for using my program "+ str(Name) + "\nHope you are having a wonderful day.")
+
+# asking for feedback for further improvements
+def bug():
+    messagebox.showinfo("Feedback", "Email us below if you would like to provide feedback : \n ys20385@student.phs.school.nz")
+
+def scores():
+    #using global so i can access event_choice and event_dropdown data that are outside the function
+    global event_choice
+    global event_dropdown
+    #assigning new names for the varibles
+    name = name_data.get()
+    event = sport.get()
+    gr = int(Green.get())
+    ye = int(Yellow.get())
+    bl = int(Blue.get())
+    re = int(Red.get())
+    # this checks if the name of the event given by the user is not empty and if the name of the event is not present in the list of events. when the code sees that
+    # requirement is fulfilled it will display the events in descending order with the points.
+    #the strip basically removes the spaces from the front and back of the string
+    if name.strip() != " " and name not in Event_name:
+        points = [('Rimu',gr),('Kowhai',ye),('Kauri',bl),("Pohutawa",re)]
+        #sorting the results in descending order
+        # the reason i am using lamba is because i am taking in more than one argument at a time and this will cross check with the points system below to find certain winners or drawers
+        points.sort(reverse=YES, key=lambda x: x[1])
+        # if a value is more than a 100, you will get a error message
+        if gr > 100 or bl > 100 or ye > 100 or re > 100:
+            messagebox.showerror("ERROR", "Enter a value below 100")
+        # This checks if the points of all the 4 houses are the same to which it will display "Draw" and if not it will display a clear winner with the house with the higest points
+        else:
+            check = None
+            if points[0][1] == points[1][1]:
+                check = True
+            else:
+                check = False
+            if points[0][1] != 0:
+                if check == True:
+                    winners = "Draw"
+                else:
+                    winners = points[0][0]
+            else:
+                winners = 0
+            #appending the name of the event to the list
+            Event_name.append(str(name))
+            #adding all the details given by the user to the list of events
+            Total_event.append(Details(name,event,gr,ye,bl,re,winners))
+            # default value for the score board and these are passing as argumnts to the function thats responsible for the leaderboard score
+            leaderboard_V2(0,0,0,0)
+            #destroying the option menu because it will overlap with the buttons as a new one is made everytime we recieve new data
+            event_dropdown.destroy()
+            event_choice = tkinter.StringVar()
+            event_choice.set("Events")
+            #had to create new option menu because the old one cant access new data
+            event_dropdown = tkinter.OptionMenu(box,event_choice,*Event_name)
+            event_dropdown.config(background="#E5E4E2")
+            event_dropdown.grid(row=0,column=0)
+
+    #error message if a event is already present in the list of events
+    # Checks if event is already present in the list of events
+    elif name in Event_name:
+        messagebox.showerror("ERROR","This event already exist in our database")
+
+#this helps to navigate through the list of events when you want to look at a specific event from the drop down menu
+def option():
+    entry = event_choice.get()
+    # works in a loop so there is no amount of restriction you can play around with the dropdown menu
+    for data in Total_event:
+        if entry == data.name:
+            global event_dropdown
+            event_dropdown.destroy()
+            #declareing whats going to be in the dropdown menu
+            event_dropdown = tkinter.OptionMenu(box, event_choice, *Event_name)
+            event_dropdown.grid(row=10)
+            event_dropdown.config(background="#E5E4E2")
+            #accessing data from the class so the user can go back and look at the certains points obtained in different house events
+            tkinter.messagebox.showinfo("Events","\n".join(data.get_info()))
+
+
+# Responsible for button creation
+# this is the gui for the "Save" Button so the user can save its input
+tkinter.Button(main_frame, text="Save", command=scores, background="#E5E4E2").grid(row=9,columnspan=5)
+
+# This button is the gui for the "show Event" which means that all the name of the events can be accessed by the press of this button
+tkinter.Button(box, text="Show Event", command=option,background="#E5E4E2").grid(row=9)
+
+# this button is responsible for the expandation for the leaderboard but the total points will still be shown on the right side regardless but this button just tells the user which points below to which user
+tkinter.Button(main_frame, text= "Leaderboard", command=display, background="#E5E4E2").grid(row=10,columnspan=3)
+
+#This button tells the user about who made the code
+tkinter.Button(main_frame, text="Credits", command=positivty_message,background="#E5E4E2").grid(row=10)
+
+# This is for the further feedback about the code
+tkinter.Button(main_frame, text= "Feedback",command=bug,background="#E5E4E2").place(x=158,y=164)
+
+#This just runs the Tkinter loop
+main.mainloop()
