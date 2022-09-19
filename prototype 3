@@ -78,7 +78,7 @@ class Details:
     # This will display the input received by the user
     def get_info(self):
         return (["Name - "+ self.name, "Is "+ str(self.name) + " a sport - "+ self.sport, "Rimu Points - " + str(self.green), "Kowhai Points - " + str(self.yellow) ,
-                 "Kauri Points - "+ str(self.blue), "Pohutukawa Points - " + str(self.red), "Winner - " + self.winner , "Entered by : " + str(self.person), "Date of Entry " + str(self.date)])
+                 "Kauri Points - "+ str(self.blue), "Pohutukawa Points - " + str(self.red), "Winner - " + self.winner , "Entered by - " + str(self.person), "Date of Entry - " + str(self.date)])
 
 # Pre-made events that will be presented in the dropdown menu
 Total_event.append(Details("Lampada Games" , "Yes", 68,72,60,75,"Pohutukawa","Yash"," "))
