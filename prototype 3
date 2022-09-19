@@ -123,7 +123,7 @@ def positivty_message():
 
 # asking for feedback for further improvements
 def bug():
-    messagebox.showinfo("Feedback", "Email us below if you would like to provide feedback : \n ys20385@student.phs.school.nz")
+    messagebox.showinfo("Feedback", "Email the developer below if you would like to provide feedback : \n ys20385@student.phs.school.nz")
 
 def scores():
     #using global so i can access event_choice and event_dropdown data that are outside the function
