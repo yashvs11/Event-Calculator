@@ -9,7 +9,7 @@ from turtle import st
 # Below are the specifications for the window
 main = Tk()
 main.title("PHS House Event Calculator")
-main.geometry("400x320")
+main.geometry("490x390")
 main.config(background="#E5E4E2")
 
 # List that holds information about house events
@@ -30,8 +30,8 @@ leaderboard.grid(row=0,column=1)
 # StingVar is used to locate the button
 sport = tkinter.StringVar()
 sport.set("Yes")
-Radiobutton(main_frame, text= "True",variable=sport,value="Yes",background="#E5E4E2").place(x=140, y=95)
-Radiobutton(main_frame, text="False", variable=sport,value="No",background="#E5E4E2").place(x=190,y=95)
+Radiobutton(main_frame, text= "True",variable=sport,value="Yes",background="#E5E4E2").place(x=158, y=104)
+Radiobutton(main_frame, text="False", variable=sport,value="No",background="#E5E4E2").place(x=215,y=104)
 
 # Creating entry boxes to get data from the user
 name_data = tkinter.Entry(main_frame)
@@ -56,7 +56,7 @@ tkinter.Label(main_frame, text= " House Event ",background="#E5E4E2").place(x=22
 tkinter.Label(main_frame, text= " Rimu : ",fg= "green",background="#E5E4E2").place(x=22,y=18)
 tkinter.Label(main_frame,text="Kowhai : ",fg="yellow",background="#E5E4E2").place(x=25,y=37)
 tkinter.Label(main_frame, text="Kauri :",fg="blue",background="#E5E4E2").place(x=25,y=58)
-tkinter.Label(main_frame, text= "Pohutukawa : ",fg="red",background="#E5E4E2").place(x=25,y=75)
+tkinter.Label(main_frame, text= "Pohutukawa : ",fg="red",background="#E5E4E2").place(x=25,y=82)
 tkinter.Label(main_frame, text= "Is the event a sport : ",background="#E5E4E2").grid(column=0,row=6)
 tkinter.Label(main_frame, text= " Whats your name : ",background="#E5E4E2").grid(column=0,row=7)
 tkinter.Label(main_frame, text= "Date of the entry event : ",background="#E5E4E2").grid(column=0,row=8)
@@ -213,7 +213,7 @@ tkinter.Button(main_frame, text= "Leaderboard", command=display, background="#E5
 tkinter.Button(main_frame, text="Credits", command=positivty_message,background="#E5E4E2").grid(row=10)
 
 # This is for the further feedback about the code
-tkinter.Button(main_frame, text= "Feedback",command=bug,background="#E5E4E2").place(x=168,y=185)
+tkinter.Button(main_frame, text= "Feedback",command=bug,background="#E5E4E2").place(x=211,y=195)
 
 #This just runs the Tkinter loop
 main.mainloop()
